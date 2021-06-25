@@ -1,0 +1,39 @@
+# python ssssssssssss
+
+class Subject:
+    def __init__(self, name: str, unit: float, grade: float):
+        self.name = name
+        self.unit = float(unit)
+        self.grade = float(grade)
+
+        if name == "":
+            raise Exception("Name must be not be an empty string, Name")
+
+        if unit <= 0.00:
+            raise Exception("Unit must be greater than zero")
+
+        if grade < 0.00 or grade > 100.0:
+            raise Exception("Grade should be between 0 - 100 only")
+
+class Student:
+    subs=[]
+
+    def __init__(self, name: str):
+        if name == "":
+            raise Exception ("Name must be not be an empty string, Name")
+        self.name = name
+        
+    def add_subject(self, subject: Subject):
+        name = subject.name
+        n = {"Subject" : subject.name,"Unit":subject.unit,"grade":subject.grade}
+        self.subs.append(n)
+
+    def solve_gwa(self) -> float:
+        total_grade = 0.00
+        total_units = 0.00
+
+        for z in self.subs:
+            total_grade += z["Unit"]*z["grade"]
+            total_units += z["Unit"]
+
+        return total_grade/total_units
